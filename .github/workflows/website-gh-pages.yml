@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main
+      - TestGHPages
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -36,6 +37,13 @@ jobs:
 
       - name: Build
         run: pnpm --filter "@typespec/website..." run build
+
+      - name: Add headers to _headers file
+        run: |
+          echo '/    Content-Security-Policy: frame-ancestors \'none\'' > ./dist/_headers
+          echo '/    X-Frame-Options: DENY' >> ./dist/_headers
+          echo '/    X-Content-Type-Options: nosniff' >> ./dist/_headers
+          echo '/    Referrer-Policy: strict-origin-when-cross-origin' >> ./dist/_headers
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
