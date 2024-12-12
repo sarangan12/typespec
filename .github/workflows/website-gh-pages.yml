@@ -40,10 +40,10 @@ jobs:
 
       - name: Add headers to _headers file
         run: |
-          echo "/    Content-Security-Policy: frame-ancestors 'none';" > ./dist/_headers
-          echo "/    X-Frame-Options: DENY" >> ./dist/_headers
-          echo "/    X-Content-Type-Options: nosniff" >> ./dist/_headers
-          echo "/    Referrer-Policy: strict-origin-when-cross-origin" >> ./dist/_headers
+          echo "/    Content-Security-Policy: frame-ancestors 'none';" > ./website/dist/_headers
+          echo "/    X-Frame-Options: DENY" >> ./website/dist/_headers
+          echo "/    X-Content-Type-Options: nosniff" >> ./website/dist/_headers
+          echo "/    Referrer-Policy: strict-origin-when-cross-origin" >> ./website/dist/_headers
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
